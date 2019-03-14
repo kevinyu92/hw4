@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+<h1>Select Bus</h1>
+<select id = "busOption" onchange="displayData()"> 
+    <option>choose </option>
+
+</select>
+<p id = "data"></p> </p>
+<script src = "db.js"></script>
+
+<script>
+
+var busId = document.getElementById ("busOption")
+
+var ids = []
+
+vehicles.forEach(item => {
+
+    ids.push(item.id)
+
+});
+
+console.log (JSON.stringify(ids))
+
+var uniqueOption = [...new Set(ids)]
+console.log (JSON.stringify(uniqueOption))
+
+for(var i = 0; i < uniqueOption.length; i++){
+    var opt = uniqueOption[i]
+    var el = document.createElement("option")
+    el.textContent = opt;
+    busId.appendChild(el)
+}
+
+function displayData() {
+var select = document.getElementById('busOption').options[document.getElementById('busOption').selectedIndex].text
+
+    print = [];
+    vehicles.forEach( vehicle =>{
+        if (vehicle.id === select){
+            print.push(vehicle);
+        }
+
+console.log (JSON.stringify(print))
+    })
+document.getElementById('data').innerHTML = JSON.stringify(print)
+}
+</script>
+
+
+
+</html>
